@@ -1,4 +1,14 @@
-.col-lg-4{
+div.square{
+  width: 15em;
+  height: 15em;
+  /*min-height: 10em;*/
+  /*min-width: 10em;*/
   background-color: #ffcc66;
+  text-align: center;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
+h4{
   text-align: center;
 }
