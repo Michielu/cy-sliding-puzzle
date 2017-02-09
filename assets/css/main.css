@@ -1,4 +1,5 @@
 div.square{
+  background-image: url('../images/1.png');
   width: 15em;
   height: 15em;
   /*min-height: 10em;*/
@@ -11,4 +12,12 @@ div.square{
 }
 h4{
   text-align: center;
+}
+
+div.box-1{
+	background-position: 0, 0;
+}
+
+div.box-2{
+	background-position: -50px, -50px;
 }
