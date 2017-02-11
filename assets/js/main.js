@@ -86,7 +86,7 @@ class Square extends React.Component{
 
 class Board extends React.Component{
   renderSquare(i, classId){
-    let customClassName = `square col-sm-4 box-${classId}`;
+    let customClassName = `square col-xs-4 box-${classId + 1}`;//could be sm
     let sq = <Square sqNum={i} customClass={customClassName}/>;
     squareLocation.push(sq);
     puzzle.push(i);
@@ -95,22 +95,20 @@ class Board extends React.Component{
   }
   render(){
     return(
-      <div>
-        <h1> Cy Sliding Puzzle</h1>
-        <div className="status">{status}</div>
-        <div className="board-row">
+      <div className="col-xs-8 col-xs-offset-2 col-sm-offset-3 col-md-offset-4">
+        <div className="row">
           {this.renderSquare(0, 0)}
           {this.renderSquare(1, 1)}
           {this.renderSquare(2, 2)}
         </div>
         
-        <div className="board-row">
+        <div className="row">
           {this.renderSquare(3, 3)}
           {this.renderSquare(4, 4)}
           {this.renderSquare(5, 5)}
         </div>
         
-        <div className="board-row">
+        <div className="row">
           {this.renderSquare(6, 6)}
           {this.renderSquare(7, 7)}
           {this.renderSquare(8, 8)}
@@ -125,15 +123,21 @@ class Board extends React.Component{
 class Game extends React.Component {
   render() {
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className="container">
+        <h1> Cy Sliding Puzzle</h1>
+        <div className="status">{status}</div>
+        <div className="row">
           <Board />
         </div>
         <div className="game-info">
           <div>{/* status */}</div>
           <ol>{/* TODO */}</ol>
-        <div className="numMoves">Moves: {moves}</div>
-        <div className="numScore">Score: {score}</div>
+          <div className ="col-sm-8 col-sm-offset-2" >
+            <div className = "row">
+              <p>Moves: {moves}</p>
+              <p>Score: {score}</p>
+            </div>
+          </div>
         </div>
 
       </div>
