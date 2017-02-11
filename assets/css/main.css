@@ -2,7 +2,7 @@ div.square{
   background-image: url('../images/default.png');
   max-width: 144px;
   min-height: 144px;
-  background-color: #ffcc66;
+  background-color: #000;
   text-align: center;
   border: 1px solid #000;
   padding: 0;
@@ -51,4 +51,5 @@ div.box-8{
 div.box-9{
 	background-position: 143px, 143px;
 	background-position-y: 144px, 144px;
+	background-image: none;
 }
