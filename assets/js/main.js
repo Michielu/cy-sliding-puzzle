@@ -5,6 +5,19 @@ var initial = 0; //Temperary variable to populate squares.
 var moves; //Number of moves
 var score; //Score. Will figure out how to do this later
 
+var shuffle = arr => {
+  let array = [...arr];
+  let currIdx = array.length, temp, randIdx;
+  while (currIdx !== 0){
+    randIdx = Math.floor(Math.random() * currIdx);
+    currIdx--;
+    temp = array[randIdx];
+    array[randIdx] = array[currIdx];
+    array[currIdx] = temp;
+  }
+  return array;
+};
+
 class Square extends React.Component{
   
    constructor() {
@@ -12,7 +25,7 @@ class Square extends React.Component{
     this.state = {
       value: initial++, //Populate the values
     };
-      console.log("Puzzle: " + puzzle[puzzle.length-1]); //Always 9
+      console.log("Puzzle: " + puzzle[puzzle.length-1]); //Always 9 {Actually the console always logs 8}
       // squareLocation.push(this);
     }
 
@@ -77,17 +90,61 @@ class Square extends React.Component{
   
   render(){
     return(
-      <div className={this.props.customClass} onClick={() => this.setState({value: this.output(this.props.sqNum)})}>
-        {this.state.value}
+      <div className={this.props.customClass} /*onClick={() => this.setState({value: this.output(this.props.sqNum)})}*/ onClick={() => this.props.onClick()}>
+        {this.props.num}
       </div>
     );
   }
 }
 
 class Board extends React.Component{
-  renderSquare(i, classId){
-    let customClassName = `square col-xs-4 box-${classId + 1}`;//could be sm
-    let sq = <Square sqNum={i} customClass={customClassName}/>;
+  constructor() {
+    super();
+    this.state = {
+      squares: shuffle([...Array(9).keys()]),
+    };
+  }
+  checker(pos, pos_out){
+    let y = pos%3;
+    let x = Math.trunc(pos/3);
+    console.log("x is " + x);
+    //check up
+    if ((x - 1 >= 0) && (((x-1)*3 + y) == pos_out)) return true;
+    
+    //check down
+    if ((x + 1 < 3) && (((x+1)*3 + y) == pos_out)) return true;
+    
+    //check right
+    if ((y + 1 < 3) && ((x*3 + (y + 1)) == pos_out)) return true;
+    
+    //check left
+    if ((y - 1 >= 0) && ((x*3 + (y-1)) == pos_out)) return true;
+    // for(let i = x-1; i <= x+1; i++){
+    //   for (let j = y-1; j <= y+1; j++){
+    //     if (i > 0 && i < 4 && j > 0 && j < 4){
+    //       let temp_pos = i*3 + j;
+    //       if (temp_pos === pos_out) return true;
+    //     }
+    //   }
+    // }
+    return false;
+  }
+  update(n){
+    let squares = [...this.state.squares];
+    if (squares[n] == 8) return;
+    for (let i = 0; i < squares.length; i++){
+      if (squares[i] == 8 && this.checker(n, i)){
+        squares[i] = squares[n];
+        squares[n] = 8;
+      }
+    }
+    console.log(squares);
+    this.setState({squares: squares});
+    
+  }
+  renderSquare(i){
+    let customClassName = `square col-xs-4 box-${this.state.squares[i] + 1}`;//could be sm
+    let sq = <Square key={(i+1).toString()} sqNum={i} customClass={customClassName} onClick={() => this.update(i)} num={this.state.squares[i]}/>;
     squareLocation.push(sq);
     puzzle.push(i);
     index.push(i);
@@ -97,21 +154,21 @@ class Board extends React.Component{
     return(
       <div className="col-xs-8 col-xs-offset-2 col-sm-offset-3 col-md-offset-4">
         <div className="row">
-          {this.renderSquare(0, 0)}
-          {this.renderSquare(1, 1)}
-          {this.renderSquare(2, 2)}
+          {this.renderSquare(0)}
+          {this.renderSquare(1)}
+          {this.renderSquare(2)}
         </div>
         
         <div className="row">
-          {this.renderSquare(3, 3)}
-          {this.renderSquare(4, 4)}
-          {this.renderSquare(5, 5)}
+          {this.renderSquare(3)}
+          {this.renderSquare(4)}
+          {this.renderSquare(5)}
         </div>
         
         <div className="row">
-          {this.renderSquare(6, 6)}
-          {this.renderSquare(7, 7)}
-          {this.renderSquare(8, 8)}
+          {this.renderSquare(6)}
+          {this.renderSquare(7)}
+          {this.renderSquare(8)}
         </div>
 
       </div>
