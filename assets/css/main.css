@@ -1,20 +1,54 @@
 div.square{
-  background-image: url('../images/1.png');
-  width: 15em;
-  height: 15em;
-  /*min-height: 10em;*/
-  /*min-width: 10em;*/
+  background-image: url('../images/default.png');
+  max-width: 144px;
+  min-height: 144px;
   background-color: #ffcc66;
   text-align: center;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px;
+  border: 1px solid #000;
+  padding: 0;
 }
 
 div.box-1{
 	background-position: 0, 0;
+	background-position-y: 0, 0;
 }
 
 div.box-2{
-	background-position: -50px, -50px;
+	background-position: 288px, 288px;
+	background-position-y: 0, 0;
+}
+
+div.box-3{
+	background-position: 144px, 144px;
+	background-position-y: 0, 0;
+}
+
+div.box-4{
+	background-position: 0, 0;
+	background-position-y: 288px, 288px;
+}
+
+div.box-5{
+	background-position: 288px, 288px;
+	background-position-y: 288px, 288px;
+}
+
+div.box-6{
+	background-position: 144px, 144px;
+	background-position-y: 287px, 287px;
+}
+
+div.box-7{
+	background-position: 0, 0;
+	background-position-y: 144px, 144px;
+}
+
+div.box-8{
+	background-position: 288px, 288px;
+	background-position-y: 144px, 144px;
+}
+
+div.box-9{
+	background-position: 143px, 143px;
+	background-position-y: 144px, 144px;
 }
