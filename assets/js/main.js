@@ -99,13 +99,16 @@ class Game extends React.Component {
         <div className="row">
           <Board onClick={(i) => this.update(i)} squares={this.state.squares}/>
         </div>
-        <div className="game-info">
+        <div>
           <div>{/* status */}</div>
           <ol>{/* TODO */}</ol>
           <div className ="col-sm-8 col-sm-offset-2" >
             <div className = "row">
-              <p>Moves: {this.state.moves}</p>
+              <p>Moves: </p>
               <p>Score: {score}</p>
+            <div className = "row info">
+              <p className = "game-info">Moves: {this.state.moves}</p>
+              <p className = "game-info">Score: {score}</p>
             </div>
           </div>
         </div>

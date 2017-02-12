@@ -53,3 +53,17 @@ div.box-9{
 	background-position-y: 144px, 144px;
 	background-image: none;
 }
+
+section{
+  background: linear-gradient(to bottom, #ffcc99 50%, #ff0000 100%);
+
+}
+
+h1 {
+  font-family: 'Kumar One Outline';font-size: 32px;
+  
+}
+
+.game-info{
+   font-family: 'Kumar One Outline';font-size: 20px;
+}
