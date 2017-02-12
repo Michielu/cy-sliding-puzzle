@@ -1,10 +1,3 @@
-var squareLocation = []; //Square itself **Having trouble storing Squares in here.
-var puzzle = []; //Values of what is on the square
-var index = []; //Use this in updateSquare function. It would be better to use Square{sqNum} but squareLocation doesn't seem to be storing squares. Likely remove this later
-var initial = 0; //Temperary variable to populate squares.
-var moves; //Number of moves
-var score; //Score. Will figure out how to do this later
-
 var shuffle = arr => {
   let array = [...arr];
   let currIdx = array.length, temp, randIdx;
@@ -86,9 +79,10 @@ class Game extends React.Component {
       if (squares[i] === 8 && this.checker(n, i)){
         squares[i] = squares[n];
         squares[n] = 8;
+        this.moves++;
       }
     }
-    this.moves++;
+    
     this.setState({squares: squares, moves: this.moves});
   }
   render() {
@@ -103,12 +97,9 @@ class Game extends React.Component {
           <div>{/* status */}</div>
           <ol>{/* TODO */}</ol>
           <div className ="col-sm-8 col-sm-offset-2" >
-            <div className = "row">
-              <p>Moves: </p>
-              <p>Score: {score}</p>
             <div className = "row info">
               <p className = "game-info">Moves: {this.state.moves}</p>
-              <p className = "game-info">Score: {score}</p>
+              <p className = "game-info">Score: {}</p>
             </div>
           </div>
         </div>
