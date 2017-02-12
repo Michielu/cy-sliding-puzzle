@@ -107,7 +107,7 @@ class Board extends React.Component{
   checker(pos, pos_out){
     let y = pos%3;
     let x = Math.trunc(pos/3);
-    console.log("x is " + x);
+    //console.log("x is " + x);
     //check up
     if ((x - 1 >= 0) && (((x-1)*3 + y) == pos_out)) return true;
     
@@ -119,14 +119,6 @@ class Board extends React.Component{
     
     //check left
     if ((y - 1 >= 0) && ((x*3 + (y-1)) == pos_out)) return true;
-    // for(let i = x-1; i <= x+1; i++){
-    //   for (let j = y-1; j <= y+1; j++){
-    //     if (i > 0 && i < 4 && j > 0 && j < 4){
-    //       let temp_pos = i*3 + j;
-    //       if (temp_pos === pos_out) return true;
-    //     }
-    //   }
-    // }
     return false;
   }
   update(n){
@@ -186,13 +178,13 @@ class Game extends React.Component {
         <div className="row">
           <Board />
         </div>
-        <div className="game-info">
+        <div>
           <div>{/* status */}</div>
           <ol>{/* TODO */}</ol>
           <div className ="col-sm-8 col-sm-offset-2" >
-            <div className = "row">
-              <p>Moves: {moves}</p>
-              <p>Score: {score}</p>
+            <div className = "row info">
+              <p className = "game-info">Moves: {moves}</p>
+              <p className = "game-info">Score: {score}</p>
             </div>
           </div>
         </div>
