@@ -21,21 +21,21 @@ function Square(props){
 }
 
 function Board(props){
-  let renderSquare = (i, bkgImg) => {
-    bkgImg = (bkgImg !== undefined && props.squares[i] !== 8) ? bkgImg : false;
+  let renderSquare = (i) => {
+    let bkgImg = (props.bkg !== undefined && props.squares[i] !== 8) ? props.bkg : false;
     let customClassName = `square col-xs-4 box-${props.squares[i] + 1}`;
     return <Square key={(i+1).toString()} customClass={customClassName} onClick={() => props.onClick(i)} num={props.displayNumbers && (props.squares[i] + 1)} bkg={bkgImg}/>;
   };
     return(
       <div className="col-xs-8 col-xs-offset-2 col-sm-offset-3 col-md-offset-4">
         <div className="row">
-          {[...Array(3).keys()].map(i => renderSquare(i, props.bkg))}
+          {[...Array(3).keys()].map(i => renderSquare(i))}
         </div>
         <div className="row">
-          {[...Array(3).keys()].map(i => renderSquare(i+3, props.bkg))}
+          {[...Array(3).keys()].map(i => renderSquare(i+3))}
         </div>
         <div className="row">
-          {[...Array(3).keys()].map(i => renderSquare(i+6, props.bkg))}
+          {[...Array(3).keys()].map(i => renderSquare(i+6))}
         </div>
       </div>
     );
@@ -93,17 +93,16 @@ class Game extends React.Component {
     let y = pos%3;
     let x = Math.trunc(pos/3);
     //check up
-    if ((x - 1 >= 0) && (((x-1)*3 + y) == pos_out)) return true;
+    return (((x - 1 >= 0) && (((x-1)*3 + y) == pos_out)) ||
     
     //check down
-    if ((x + 1 < 3) && (((x+1)*3 + y) == pos_out)) return true;
+     ((x + 1 < 3) && (((x+1)*3 + y) == pos_out)) ||
     
     //check right
-    if ((y + 1 < 3) && ((x*3 + (y + 1)) == pos_out)) return true;
-    
+     ((y + 1 < 3) && ((x*3 + (y + 1)) == pos_out)) ||
+
     //check left
-    if ((y - 1 >= 0) && ((x*3 + (y-1)) == pos_out)) return true;
-    return false;
+     ((y - 1 >= 0) && ((x*3 + (y-1)) == pos_out)));
   }
   
   update(n){
@@ -115,7 +114,7 @@ class Game extends React.Component {
         squares[i] = squares[n];
         squares[n] = 8;
         this.moves++;
-        this.score-=2;
+        this.score -= 2;
       }
       if (this.moves == 1) this.startTime = (new Date()).getTime()/1000;
     }
