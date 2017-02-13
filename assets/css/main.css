@@ -1,5 +1,5 @@
 div.square{
-  background-image: url('../images/default.png');
+  background-image: url('../images/default.jpg');
   max-width: 144px;
   min-height: 144px;
   background-color: #000;
@@ -66,4 +66,12 @@ h1 {
 
 .game-info{
    font-family: 'Kumar One Outline';font-size: 20px;
+}
+
+.option{
+  cursor: pointer;
+}
+
+.option:hover{
+  background-color: #e1b4b4;
 }
